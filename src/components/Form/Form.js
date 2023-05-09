@@ -25,7 +25,6 @@ const Form = () => {
       setFormData({ ...formData, [name]: value });
     }
   };
-  console.log(formData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
