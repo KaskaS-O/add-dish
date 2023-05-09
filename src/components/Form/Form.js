@@ -10,32 +10,27 @@ const Form = () => {
     name: "",
     preparation_time: "00:00:00",
     type: "",
-    dishInfo: {},
   });
   const formRef = useRef(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "type") {
-      setFormData({ ...formData, dishInfo: {}, [name]: value });
+    if (name === "type" && value !== formData.type) {
+      setFormData({
+        name: formData.name,
+        preparation_time: formData.preparation_time,
+        type: value,
+      });
     } else {
       setFormData({ ...formData, [name]: value });
     }
   };
-
-  const handleDishInputChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData({
-      ...formData,
-      dishInfo: { ...formData.dishInfo, [name]: value },
-    });
-  };
+  console.log(formData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // send data to API here
+    // send data to API
     fetch("https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -66,6 +61,7 @@ const Form = () => {
         name="name"
         id="name"
         value={formData.name}
+        minLength="3"
         onChange={handleChange}
         required
       />
@@ -88,11 +84,11 @@ const Form = () => {
         <option value="sandwich">Sandwich</option>
       </StyledSelect>
       {formData.type === "pizza" ? (
-        <Pizza formData={formData} onChange={handleDishInputChange} />
+        <Pizza formData={formData} onChange={handleChange} />
       ) : formData.type === "soup" ? (
-        <Soup formData={formData} onChange={handleDishInputChange} />
+        <Soup formData={formData} onChange={handleChange} />
       ) : formData.type === "sandwich" ? (
-        <Sandwich formData={formData} onChange={handleDishInputChange} />
+        <Sandwich formData={formData} onChange={handleChange} />
       ) : null}
       <StyledButton type="submit">Submit</StyledButton>
     </StyledForm>
