@@ -33,9 +33,20 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
 
     // send data to API here
+    fetch("https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.log(error);
+      });
 
     // reset the form
     formRef.current.reset();
