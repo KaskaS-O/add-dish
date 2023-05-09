@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/add-dish/static/js/main.aece1bc6.js",
+    "index.html": "/add-dish/index.html",
+    "main.aece1bc6.js.map": "/add-dish/static/js/main.aece1bc6.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.aece1bc6.js"
+  ]
+}
