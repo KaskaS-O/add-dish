@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import Pizza from "../Dishes/Pizza";
 import Soup from "../Dishes/Soup";
 import Sandwich from "../Dishes/Sandwich";
+import { StyledForm, StyledButton, StyledSelect } from "./style";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const Form = () => {
     event.preventDefault();
 
     // send data to API here
-    fetch("https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/", {
+    fetch("https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
@@ -58,7 +59,7 @@ const Form = () => {
   };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit}>
+    <StyledForm ref={formRef} onSubmit={handleSubmit}>
       <label htmlFor="name">Name:</label>
       <input
         type="text"
@@ -80,12 +81,12 @@ const Form = () => {
         required
       />
       <label htmlFor="type">Type:</label>
-      <select name="type" id="type" onChange={handleChange} required>
+      <StyledSelect name="type" id="type" onChange={handleChange} required>
         <option value="">Please select a dish type</option>
         <option value="pizza">Pizza</option>
         <option value="soup">Soup</option>
         <option value="sandwich">Sandwich</option>
-      </select>
+      </StyledSelect>
       {formData.type === "pizza" ? (
         <Pizza formData={formData} onChange={handleDishInputChange} />
       ) : formData.type === "soup" ? (
@@ -93,8 +94,8 @@ const Form = () => {
       ) : formData.type === "sandwich" ? (
         <Sandwich formData={formData} onChange={handleDishInputChange} />
       ) : null}
-      <button type="submit">Submit</button>
-    </form>
+      <StyledButton type="submit">Submit</StyledButton>
+    </StyledForm>
   );
 };
 
