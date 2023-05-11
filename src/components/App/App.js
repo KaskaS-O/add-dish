@@ -1,19 +1,20 @@
 import Form from "../Form/Form";
 import GlobalStyles from "../../styles/GlobalStyles";
-import { StyledHeader, StyledTitle } from "./style";
+import { StyledApp, StyledHeader, StyledTitle } from "./style";
+import "../../styles/style.scss";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <div className="App">
+      <StyledApp className="App">
         <StyledHeader>
-          <StyledTitle>Add your dish</StyledTitle>
+          <StyledTitle>PlatePal</StyledTitle>
         </StyledHeader>
         <main>
           <Form />
         </main>
-      </div>
+      </StyledApp>
     </>
   );
 }

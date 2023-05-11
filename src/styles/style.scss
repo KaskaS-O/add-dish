@@ -1,0 +1,41 @@
+:root {
+  // Colors
+
+  //   focus, icons
+  // --mustard: #fed55fff;
+  --icons: #fed55fff;
+
+  // borders
+  // --columbia-blue: #afcfdeff;
+  --border: #afcfdeff;
+
+  //   title + btn
+  // --paynes-gray: #405A67ff;
+  --title: #405a67ff;
+
+  //   labels
+  // --air-superiority-blue: #7498aaff;
+  --labels: #7498aaff;
+
+  //   form bgc
+  // --white: #FBFBFDff;
+  --form-bgc: #fbfbfdff;
+
+  --kobicha: #6d452dff;
+
+  --btn-txt: #ffffff;
+
+  // Typography
+  --font: "Roboto", sans-serif;
+}
+
+body {
+  background-image: url("../images/shutterstock_615092501.jpg");
+  background-size: auto 100vh;
+  background-repeat: no-repeat;
+  background-position: center top;
+
+  @media (min-width: 700px) {
+    background-size: 100vw auto;
+  }
+}
