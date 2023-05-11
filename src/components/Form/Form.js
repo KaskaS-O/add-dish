@@ -1,8 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import Pizza from "../Dishes/Pizza";
 import Soup from "../Dishes/Soup";
 import Sandwich from "../Dishes/Sandwich";
+import SuccessPopup from "../Popups/SuccessPopup";
+import ErrorPopup from "../Popups/ErrorPopup";
 import {
   StyledForm,
   StyledButton,
@@ -11,7 +13,6 @@ import {
   StyledPizzaIcon,
   StyledSoupIcon,
   StyledSandwichIcon,
-  StyledCheckedIcon,
   StyledImgContainer,
   StyledWrapper,
 } from "./style";
@@ -22,43 +23,12 @@ const Form = () => {
     preparation_time: "00:00:00",
     type: "",
   });
+  const [isFormValid, setIsFormValid] = useState({
+    isValid: false,
+    errorMsg: "",
+  });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const formRef = useRef(null);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    if (value === "pizza") {
-      console.log("pizza");
-      setFormData({
-        name: formData.name,
-        preparation_time: formData.preparation_time,
-        type: value,
-        no_of_slices: "",
-        diameter: "",
-      });
-    } else if (value === "soup") {
-      console.log("soup");
-
-      setFormData({
-        name: formData.name,
-        preparation_time: formData.preparation_time,
-        type: value,
-        spiciness_scale: "",
-      });
-    } else if (value === "sandwich") {
-      console.log("sandwich");
-
-      setFormData({
-        name: formData.name,
-        preparation_time: formData.preparation_time,
-        type: value,
-        slices_of_bread: "",
-      });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
 
   const validateForm = () => {
     const {
@@ -72,42 +42,102 @@ const Form = () => {
     } = formData;
 
     if (name.length < 3) {
-      console.log("Name should have at least 3 characters");
-      return false;
+      setIsFormValid({
+        isValid: false,
+        errorMsg: "Name should have at least 3 characters",
+      });
     } else if (preparation_time === "00:00:00") {
-      console.log("Please set preparation time");
-      return false;
+      setIsFormValid({
+        isValid: false,
+        errorMsg: "Please set preparation time",
+      });
     } else if (type === "") {
-      console.log("Please select dish type");
-      return false;
+      setIsFormValid({
+        isValid: false,
+        errorMsg: "Please select dish type",
+      });
     } else if (type === "pizza") {
       if (Number(no_of_slices) < 1) {
-        console.log("Please give number of slices");
-        return false;
+        setIsFormValid({
+          isValid: false,
+          errorMsg: "Please give number of slices",
+        });
       } else if (Number(diameter) < 10) {
-        console.log("Diameter should be at least 10 cm");
-        return false;
-      } else return true;
+        setIsFormValid({
+          isValid: false,
+          errorMsg: "Diameter should be at least 10 cm",
+        });
+      } else
+        setIsFormValid({
+          isValid: true,
+          errorMsg: "",
+        });
     } else if (type === "soup") {
       if (spiciness_scale === "") {
-        console.log("Please select spiciness");
-        return false;
-      } else return true;
+        setIsFormValid({
+          isValid: false,
+          errorMsg: "Please select spiciness",
+        });
+      } else
+        setIsFormValid({
+          isValid: true,
+          errorMsg: "",
+        });
     } else if (type === "sandwich") {
       if (Number(slices_of_bread) < 1) {
-        console.log("Please give number of slices of bread required");
-        return false;
-      } else return true;
-    } else return true;
+        setIsFormValid({
+          isValid: false,
+          errorMsg: "Please give number of slices of bread required",
+        });
+      } else
+        setIsFormValid({
+          isValid: true,
+          errorMsg: "",
+        });
+    } else
+      setIsFormValid({
+        isValid: true,
+        errorMsg: "",
+      });
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    if (value === "pizza") {
+      setFormData({
+        name: formData.name,
+        preparation_time: formData.preparation_time,
+        type: value,
+        no_of_slices: "",
+        diameter: "",
+      });
+    } else if (value === "soup") {
+      setFormData({
+        name: formData.name,
+        preparation_time: formData.preparation_time,
+        type: value,
+        spiciness_scale: "",
+      });
+    } else if (value === "sandwich") {
+      setFormData({
+        name: formData.name,
+        preparation_time: formData.preparation_time,
+        type: value,
+        slices_of_bread: "",
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    validateForm();
+  };
 
-    const isFormValid = validateForm();
-    console.log(isFormValid);
-
-    if (isFormValid) {
+  useEffect(() => {
+    if (isFormValid.isValid) {
       // send data to API
       fetch("https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes", {
         method: "POST",
@@ -133,7 +163,7 @@ const Form = () => {
         type: "",
       });
     }
-  };
+  }, [isFormValid]);
 
   const handleSubmissionCancel = () => {
     if (isFormSubmitted) {
@@ -229,11 +259,9 @@ const Form = () => {
         <Sandwich formData={formData} onChange={handleChange} />
       ) : null}
       <StyledButton type="submit">Add dish</StyledButton>
-      {isFormSubmitted ? (
-        <div>
-          <StyledCheckedIcon />
-          <p>Your dish was successfully added</p>
-        </div>
+      {isFormSubmitted ? <SuccessPopup /> : null}
+      {isFormValid.errorMsg ? (
+        <ErrorPopup errorMsg={isFormValid.errorMsg} />
       ) : null}
     </StyledForm>
   );

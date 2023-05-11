@@ -3,7 +3,6 @@ import { devices } from "../../styles/breakpoints";
 import { ReactComponent as PizzaIcon } from "../../images/pizza-svgrepo-com.svg";
 import { ReactComponent as SoupIcon } from "../../images/soup-svgrepo-com.svg";
 import { ReactComponent as SandwichIcon } from "../../images/sandwich-svgrepo-com.svg";
-import { ReactComponent as CheckedIcon } from "../../images/checked-svgrepo-com.svg";
 
 export const StyledForm = styled.form`
   width: 100%;
@@ -48,10 +47,6 @@ export const StyledSoupIcon = styled(SoupIcon)`
 `;
 
 export const StyledSandwichIcon = styled(SandwichIcon)`
-  ${svgStyle}
-`;
-
-export const StyledCheckedIcon = styled(CheckedIcon)`
   ${svgStyle}
 `;
 
