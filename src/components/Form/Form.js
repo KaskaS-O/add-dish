@@ -15,6 +15,8 @@ import {
   StyledSandwichIcon,
   StyledImgContainer,
   StyledWrapper,
+  StyledRadioInput,
+  StyledDishTypeName,
 } from "./style";
 
 const Form = () => {
@@ -204,7 +206,7 @@ const Form = () => {
       <StyledFieldset form="dish_form" onChange={handleChange}>
         <StyledLegend>Choose dish type:</StyledLegend>
         <StyledWrapper className="input-wrapper">
-          <input
+          <StyledRadioInput
             type="radio"
             className="visually-hidden"
             name="type"
@@ -212,14 +214,14 @@ const Form = () => {
             value="pizza"
           />
           <label htmlFor="pizza">
-            <span>Pizza</span>
+            <StyledDishTypeName>Pizza</StyledDishTypeName>
             <StyledImgContainer className="img-container">
               <StyledPizzaIcon fill="#fed55fff" />
             </StyledImgContainer>
           </label>
         </StyledWrapper>
         <StyledWrapper className="input-wrapper">
-          <input
+          <StyledRadioInput
             type="radio"
             className="visually-hidden"
             name="type"
@@ -227,15 +229,14 @@ const Form = () => {
             value="soup"
           />
           <label htmlFor="soup">
-            <span>Soup</span>
+            <StyledDishTypeName>Soup</StyledDishTypeName>
             <StyledImgContainer className="img-container">
-              {" "}
               <StyledSoupIcon fill="#fed55fff" />
             </StyledImgContainer>
           </label>
         </StyledWrapper>
         <StyledWrapper className="input-wrapper">
-          <input
+          <StyledRadioInput
             type="radio"
             className="visually-hidden"
             name="type"
@@ -243,9 +244,8 @@ const Form = () => {
             value="sandwich"
           />
           <label htmlFor="sandwich">
-            <span>Sandwich</span>
+            <StyledDishTypeName>Sandwich</StyledDishTypeName>
             <StyledImgContainer className="img-container">
-              {" "}
               <StyledSandwichIcon fill="#fed55fff" />
             </StyledImgContainer>
           </label>

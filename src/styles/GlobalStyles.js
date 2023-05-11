@@ -26,7 +26,7 @@ label, legend {
     color: var(--labels);
 }
 
-input, select {
+input {
     margin: 0 auto 20px;
     height: 40px;
     width: 300px;
@@ -38,6 +38,10 @@ input, select {
     &::-webkit-calendar-picker-indicator {
         cursor: pointer;
     }
+   &:focus {
+    outline: none;
+    border: 2px solid var(--icons)
+   }
 }
 
 

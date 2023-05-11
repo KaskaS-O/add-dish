@@ -4,6 +4,11 @@ import { ReactComponent as PizzaIcon } from "../../images/pizza-svgrepo-com.svg"
 import { ReactComponent as SoupIcon } from "../../images/soup-svgrepo-com.svg";
 import { ReactComponent as SandwichIcon } from "../../images/sandwich-svgrepo-com.svg";
 
+const svgStyle = css`
+  height: 40px;
+  width: 40px;
+`;
+
 export const StyledForm = styled.form`
   width: 100%;
   max-width: 500px;
@@ -33,9 +38,14 @@ export const StyledWrapper = styled.div`
   text-align: center;
 `;
 
-const svgStyle = css`
-  height: 40px;
-  width: 40px;
+export const StyledDishTypeName = styled.span`
+  transition: 0.2s;
+`;
+
+export const StyledRadioInput = styled.input`
+  &:checked + label span {
+    color: var(--icons);
+  }
 `;
 
 export const StyledPizzaIcon = styled(PizzaIcon)`
