@@ -51,14 +51,16 @@ export const StyledInputRange = styled.input`
 
   &:focus {
     outline: none;
+    border: none;
   }
 `;
 
 export const StyledDatalist = styled.datalist`
   display: flex;
   justify-content: space-between;
-  width: 290px;
-  margin-left: 6px;
+  width: 100%;
+  padding: 0 3px;
+  margin-bottom: 20px;
   color: var(--labels);
   font-weight: 500;
 `;

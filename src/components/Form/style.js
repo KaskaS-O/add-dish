@@ -10,14 +10,29 @@ const svgStyle = css`
 `;
 
 export const StyledForm = styled.form`
+  position: relative;
   width: 100%;
   max-width: 500px;
-  margin: 0 auto;
+  min-height: calc(100vh - 30px - 25vh);
+  margin: 25vh auto 0;
   padding: 8%;
   background-color: var(--form-bgc);
 
+  @media ${devices.mobileS} {
+    padding: 5vw;
+  }
   @media ${devices.tabletS} {
-    padding: 5%;
+    min-height: fit-content;
+  }
+
+  @media ${devices.laptopS} and (orientation: landscape) {
+    position: absolute;
+    top: 25vh;
+    left: 50%;
+    height: 575px;
+    transform: translateX(-50%);
+    padding: 30px 50px;
+    margin: 0;
   }
 `;
 
@@ -26,8 +41,12 @@ export const StyledFieldset = styled.fieldset`
   grid-template-columns: repeat(3, 1fr);
   justify-content: space-between;
   margin: 0 auto 10px;
-  width: 300px;
+  width: 100%;
   border: none;
+
+  @media ${devices.laptopS} and (orientation: landscape) {
+    margin-bottom: 0;
+  }
 `;
 
 export const StyledLegend = styled.legend`
@@ -68,8 +87,8 @@ export const StyledImgContainer = styled.div`
 
 export const StyledButton = styled.button`
   height: 40px;
-  width: 300px;
-  margin-top: 40px;
+  width: 100%;
+  margin-top: 20px;
   justify-self: center;
   border: none;
   border-radius: 20px;
@@ -78,4 +97,11 @@ export const StyledButton = styled.button`
   background-color: var(--title);
   color: var(--btn-txt);
   cursor: pointer;
+
+  @media ${devices.laptopS} and (orientation: landscape) {
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+    width: 400px;
+  }
 `;

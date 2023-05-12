@@ -1,6 +1,6 @@
 import Form from "../Form/Form";
 import GlobalStyles from "../../styles/GlobalStyles";
-import { StyledApp, StyledHeader, StyledTitle } from "./style";
+import { StyledApp, StyledTitle } from "./style";
 import "../../styles/style.scss";
 
 function App() {
@@ -8,9 +8,9 @@ function App() {
     <>
       <GlobalStyles />
       <StyledApp className="App">
-        <StyledHeader>
+        <header>
           <StyledTitle>PlatePal</StyledTitle>
-        </StyledHeader>
+        </header>
         <main>
           <Form />
         </main>
