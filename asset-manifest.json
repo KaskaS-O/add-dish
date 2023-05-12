@@ -1,10 +1,19 @@
 {
   "files": {
-    "main.js": "/add-dish/static/js/main.aece1bc6.js",
+    "main.css": "/add-dish/static/css/main.f962f40f.css",
+    "main.js": "/add-dish/static/js/main.bfc69bfa.js",
+    "static/media/shutterstock_615092501-mobile-compressed.jpg": "/add-dish/static/media/shutterstock_615092501-mobile-compressed.43572ebc68810bc94948.jpg",
+    "static/media/shutterstock_614373551-desktop-compressed.jpg": "/add-dish/static/media/shutterstock_614373551-desktop-compressed.e5eb0de0ad0d08cb115d.jpg",
+    "static/media/sandwich-svgrepo-com.svg": "/add-dish/static/media/sandwich-svgrepo-com.23361194f76b896a733fdccaf6401703.svg",
+    "static/media/pizza-svgrepo-com.svg": "/add-dish/static/media/pizza-svgrepo-com.84f0f605d95a6cc264684d2b13ab8912.svg",
+    "static/media/soup-svgrepo-com.svg": "/add-dish/static/media/soup-svgrepo-com.5f735b4a12979766fbf1d24694890691.svg",
     "index.html": "/add-dish/index.html",
-    "main.aece1bc6.js.map": "/add-dish/static/js/main.aece1bc6.js.map"
+    "static/media/checked-svgrepo-com.svg": "/add-dish/static/media/checked-svgrepo-com.17e9d7aa3a2e07d300695e940a4976ae.svg",
+    "main.f962f40f.css.map": "/add-dish/static/css/main.f962f40f.css.map",
+    "main.bfc69bfa.js.map": "/add-dish/static/js/main.bfc69bfa.js.map"
   },
   "entrypoints": [
-    "static/js/main.aece1bc6.js"
+    "static/css/main.f962f40f.css",
+    "static/js/main.bfc69bfa.js"
   ]
 }
