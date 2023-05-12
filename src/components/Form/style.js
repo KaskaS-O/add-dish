@@ -13,8 +13,8 @@ export const StyledForm = styled.form`
   position: relative;
   width: 100%;
   max-width: 500px;
-  min-height: calc(100vh - 30px - 25vh);
-  margin: 25vh auto 0;
+  min-height: calc(100vh - 35vh);
+  margin: 35vh auto 0;
   padding: 8%;
   background-color: var(--form-bgc);
 
@@ -97,6 +97,11 @@ export const StyledButton = styled.button`
   background-color: var(--title);
   color: var(--btn-txt);
   cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: var(--labels);
+  }
 
   @media ${devices.laptopS} and (orientation: landscape) {
     position: absolute;

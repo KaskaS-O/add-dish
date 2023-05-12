@@ -17,7 +17,10 @@ export const StyledApp = styled.div`
 `;
 
 export const StyledTitle = styled.h1`
-  margin-bottom: 30px;
+  position: absolute;
+  top: 25vh;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
   color: var(--title);
   font-size: 36px;
@@ -27,10 +30,10 @@ export const StyledTitle = styled.h1`
   }
 
   @media ${devices.laptopS} and (orientation: landscape) {
-    position: absolute;
+    /* position: absolute; */
     top: calc(20vh / 2);
-    left: 50%;
-    transform: translateX(-50%);
+    /* left: 50%;
+    transform: translateX(-50%); */
     width: auto;
     font-size: 60px;
   }

@@ -30,6 +30,7 @@ const Form = () => {
     errorMsg: "",
   });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const formRef = useRef(null);
 
   const validateForm = () => {
@@ -48,27 +49,32 @@ const Form = () => {
         isValid: false,
         errorMsg: "Name should have at least 3 characters",
       });
+      setIsPopupOpen(true);
     } else if (preparation_time === "00:00:00") {
       setIsFormValid({
         isValid: false,
         errorMsg: "Please set preparation time",
       });
+      setIsPopupOpen(true);
     } else if (type === "") {
       setIsFormValid({
         isValid: false,
         errorMsg: "Please select dish type",
       });
+      setIsPopupOpen(true);
     } else if (type === "pizza") {
       if (Number(no_of_slices) < 1) {
         setIsFormValid({
           isValid: false,
           errorMsg: "Please give number of slices",
         });
+        setIsPopupOpen(true);
       } else if (Number(diameter) < 10) {
         setIsFormValid({
           isValid: false,
           errorMsg: "Diameter should be at least 10 cm",
         });
+        setIsPopupOpen(true);
       } else
         setIsFormValid({
           isValid: true,
@@ -80,6 +86,7 @@ const Form = () => {
           isValid: false,
           errorMsg: "Please select spiciness",
         });
+        setIsPopupOpen(true);
       } else
         setIsFormValid({
           isValid: true,
@@ -91,6 +98,7 @@ const Form = () => {
           isValid: false,
           errorMsg: "Please give number of slices of bread required",
         });
+        setIsPopupOpen(true);
       } else
         setIsFormValid({
           isValid: true,
@@ -173,97 +181,107 @@ const Form = () => {
     }
   };
 
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
+
   return (
-    <StyledForm
-      ref={formRef}
-      onSubmit={handleSubmit}
-      onFocus={handleSubmissionCancel}
-      noValidate
-      id="dish_form"
-    >
-      <label htmlFor="name">Dish name:</label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        value={formData.name}
-        placeholder="Please give your dish name"
-        minLength="3"
-        onChange={handleChange}
-        required
-      />
-      <label htmlFor="preparation_time">Preparation time:</label>
-      <input
-        type="time"
-        name="preparation_time"
-        id="preparation_time"
-        value={formData.preparation_time}
-        onChange={handleChange}
-        min="00:00:01"
-        step="1"
-        required
-      />
-      <StyledFieldset form="dish_form" onChange={handleChange}>
-        <StyledLegend>Choose dish type:</StyledLegend>
-        <StyledWrapper className="input-wrapper">
-          <StyledRadioInput
-            type="radio"
-            className="visually-hidden"
-            name="type"
-            id="pizza"
-            value="pizza"
-          />
-          <label htmlFor="pizza">
-            <StyledDishTypeName>Pizza</StyledDishTypeName>
-            <StyledImgContainer className="img-container">
-              <StyledPizzaIcon fill="#fed55fff" />
-            </StyledImgContainer>
-          </label>
-        </StyledWrapper>
-        <StyledWrapper className="input-wrapper">
-          <StyledRadioInput
-            type="radio"
-            className="visually-hidden"
-            name="type"
-            id="soup"
-            value="soup"
-          />
-          <label htmlFor="soup">
-            <StyledDishTypeName>Soup</StyledDishTypeName>
-            <StyledImgContainer className="img-container">
-              <StyledSoupIcon fill="#fed55fff" />
-            </StyledImgContainer>
-          </label>
-        </StyledWrapper>
-        <StyledWrapper className="input-wrapper">
-          <StyledRadioInput
-            type="radio"
-            className="visually-hidden"
-            name="type"
-            id="sandwich"
-            value="sandwich"
-          />
-          <label htmlFor="sandwich">
-            <StyledDishTypeName>Sandwich</StyledDishTypeName>
-            <StyledImgContainer className="img-container">
-              <StyledSandwichIcon fill="#fed55fff" />
-            </StyledImgContainer>
-          </label>
-        </StyledWrapper>
-      </StyledFieldset>
-      {formData.type === "pizza" ? (
-        <Pizza formData={formData} onChange={handleChange} />
-      ) : formData.type === "soup" ? (
-        <Soup formData={formData} onChange={handleChange} />
-      ) : formData.type === "sandwich" ? (
-        <Sandwich formData={formData} onChange={handleChange} />
-      ) : null}
-      <StyledButton type="submit">Add dish</StyledButton>
+    <>
+      <StyledForm
+        ref={formRef}
+        onSubmit={handleSubmit}
+        onFocus={handleSubmissionCancel}
+        noValidate
+        id="dish_form"
+      >
+        <label htmlFor="name">Dish name:</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value={formData.name}
+          placeholder="Please give your dish name"
+          minLength="3"
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="preparation_time">Preparation time:</label>
+        <input
+          type="time"
+          name="preparation_time"
+          id="preparation_time"
+          value={formData.preparation_time}
+          onChange={handleChange}
+          min="00:00:01"
+          step="1"
+          required
+        />
+        <StyledFieldset form="dish_form" onChange={handleChange}>
+          <StyledLegend>Choose dish type:</StyledLegend>
+          <StyledWrapper className="input-wrapper">
+            <StyledRadioInput
+              type="radio"
+              className="visually-hidden"
+              name="type"
+              id="pizza"
+              value="pizza"
+            />
+            <label htmlFor="pizza">
+              <StyledDishTypeName>Pizza</StyledDishTypeName>
+              <StyledImgContainer className="img-container">
+                <StyledPizzaIcon fill="#fed55fff" />
+              </StyledImgContainer>
+            </label>
+          </StyledWrapper>
+          <StyledWrapper className="input-wrapper">
+            <StyledRadioInput
+              type="radio"
+              className="visually-hidden"
+              name="type"
+              id="soup"
+              value="soup"
+            />
+            <label htmlFor="soup">
+              <StyledDishTypeName>Soup</StyledDishTypeName>
+              <StyledImgContainer className="img-container">
+                <StyledSoupIcon fill="#fed55fff" />
+              </StyledImgContainer>
+            </label>
+          </StyledWrapper>
+          <StyledWrapper className="input-wrapper">
+            <StyledRadioInput
+              type="radio"
+              className="visually-hidden"
+              name="type"
+              id="sandwich"
+              value="sandwich"
+            />
+            <label htmlFor="sandwich">
+              <StyledDishTypeName>Sandwich</StyledDishTypeName>
+              <StyledImgContainer className="img-container">
+                <StyledSandwichIcon fill="#fed55fff" />
+              </StyledImgContainer>
+            </label>
+          </StyledWrapper>
+        </StyledFieldset>
+        {formData.type === "pizza" ? (
+          <Pizza formData={formData} onChange={handleChange} />
+        ) : formData.type === "soup" ? (
+          <Soup formData={formData} onChange={handleChange} />
+        ) : formData.type === "sandwich" ? (
+          <Sandwich formData={formData} onChange={handleChange} />
+        ) : null}
+        <StyledButton type="submit">Add dish</StyledButton>
+      </StyledForm>
       {isFormSubmitted ? <SuccessPopup /> : null}
-      {isFormValid.errorMsg ? (
-        <ErrorPopup errorMsg={isFormValid.errorMsg} />
+      {isPopupOpen ? (
+        <ErrorPopup
+          errorMsg={isFormValid.errorMsg}
+          isOpen={isPopupOpen}
+          onClose={handlePopupClose}
+        />
       ) : null}
-    </StyledForm>
+    </>
   );
 };
 

@@ -1,11 +1,11 @@
-import { ReactComponent as CheckedIcon } from "../../images/checked-svgrepo-com.svg";
+import { StyledPopup, StyledTxt, StyledCheckedIcon } from "./style";
 
 const SuccessPopup = () => {
   return (
-    <div>
-      <CheckedIcon />
-      <p>Your dish was successfully added</p>
-    </div>
+    <StyledPopup>
+      <StyledCheckedIcon />
+      <StyledTxt success>Your dish was successfully added</StyledTxt>
+    </StyledPopup>
   );
 };
 
