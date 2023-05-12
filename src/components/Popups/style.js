@@ -6,8 +6,8 @@ export const StyledPopup = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80vw;
-  max-width: 500px;
+  min-width: 250px;
+  max-width: 400px;
   padding: 20px;
   background-color: var(--popups);
   box-shadow: 3px 3px 10px var(--labels);
